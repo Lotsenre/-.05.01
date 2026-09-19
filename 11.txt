@@ -1,0 +1,10 @@
+$source = "C:\WorkSpace\Polit\МДК.05.01"
+  $public = "C:\WorkSpace\МДК.05.01"
+
+  Get-ChildItem -LiteralPath $source -Force |
+      Where-Object Name -ne ".git" |
+      Copy-Item -Destination $public -Recurse -Force
+
+  git -C $public add --all
+  git -C $public commit -m "Синхронизация с приватной папкой"
+  git -C $public push origin main
